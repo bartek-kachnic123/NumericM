@@ -19,8 +19,8 @@ def annot_min(x,y,corx,cory, ax=None):
 def check_deritive_error(h, E, x=0.2):
     num = np.fabs(-np.sin(x) / 2 ) - (2*E * np.fabs(np.sin(x)) / h * h)
     print(f'check is {num}')
-data1 = pd.read_csv("results2.csv", sep=";")
-data2 = pd.read_csv("resultsB_d.csv", sep=";")
+data1 = pd.read_csv("results.csv", sep=";")
+data2 = pd.read_csv("results1_d.csv", sep=";")
 
 
 x1 = data1['h'].values
@@ -36,7 +36,7 @@ print(minF)
 print(min(y1))
 plt.plot(x1, y1,  label="float")
 annot_min(x1, y1, 0.90, 0.12)
-annot_min(x2,y2, 0.50, 0.12)
+annot_min(x2,y2, 0.50, 0.06)
 check_deritive_error(minF[0], minF[1])
 plt.plot(x2, y2,  label="double")
 plt.title('Dh = (sin(x+h) - sin(x)) / h')
