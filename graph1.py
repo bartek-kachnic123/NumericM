@@ -19,8 +19,10 @@ def annot_min(x,y,corx,cory, ax=None):
 def check_deritive_error(h, E, x=0.2):
     num = np.fabs(-np.sin(x) / 2 ) - (2*E * np.fabs(np.sin(x)) / h * h)
     print(f'check is {num}')
-data1 = pd.read_csv("results.csv", sep=";")
-data2 = pd.read_csv("results1_d.csv", sep=";")
+
+# Get data from files
+data1 = pd.read_csv("resultsA_f.csv", sep=";")
+data2 = pd.read_csv("resultsA_d.csv", sep=";")
 
 
 x1 = data1['h'].values

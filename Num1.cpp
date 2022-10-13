@@ -4,58 +4,59 @@
 #include <unistd.h>
 #define H_START 0.5
 #define H_LIMIT 10e-20
+#define X_VALUE 0.2
 using namespace std;
 
 
-void SolveA() {
-    const float X = 0.2;
-    float Dh = 0.0;
-    float h = H_START; // largest h value
-
-    ofstream fout;
-    fout.open("results.csv", ios::trunc);
-    fout << "h" << ";" << "E(h)" << endl;
-    while (h > H_LIMIT) 
-    {
-        Dh = (sin(X+h) - sin(X) ) / h;
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
-    }
-    fout.close();
-    cout << "Pomyslnie zapisano do pliku results.csv!" << endl;
-    sleep(1);
-
-    
-}
-
-void SolveA_d() {
-    const double X = 0.2;
-    double Dh = 0.0;
-    double h = H_START;
-
-    ofstream fout;
-    fout.open("results1_d.csv", ios::trunc);
-    fout << "h" << ";" << "E(h)" << endl;
-    while (h > H_LIMIT) 
-    {
-        Dh = (sin(X+h) - sin(X) ) / h;
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
-    }
-    fout.close();
-    cout << "Pomyslnie zapisano do pliku results1_d.csv!" << endl;
-    sleep(1);
-
-    
-}
-
-void SolveB() {
-    const float X = 0.2;
+void SolveA_f(const float X) {
     float Dh = 0.0;
     float h = H_START;
+    string filename = "resultsA_f.csv";
 
     ofstream fout;
-    fout.open("results2.csv", ios::trunc);
+    fout.open(filename, ios::trunc);
+    fout << "h" << ";" << "E(h)" << endl;
+    while (h > H_LIMIT) 
+    {
+        Dh = (sin(X+h) - sin(X) ) / h;
+        fout << h << ";" << fabs(Dh - cos(X)) << endl;
+        h = 0.8 * h;
+    }
+    fout.close();
+    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
+    sleep(1);
+
+    
+}
+
+void SolveA_d(const double X) {
+    double Dh = 0.0;
+    double h = H_START;
+    string filename = "resultsA_d.csv";
+
+    ofstream fout;
+    fout.open(filename, ios::trunc);
+    fout << "h" << ";" << "E(h)" << endl;
+    while (h > H_LIMIT) 
+    {
+        Dh = (sin(X+h) - sin(X) ) / h;
+        fout << h << ";" << fabs(Dh - cos(X)) << endl;
+        h = 0.8 * h;
+    }
+    fout.close();
+    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
+    sleep(1);
+
+    
+}
+
+void SolveB_f(const float X) {
+    float Dh = 0.0;
+    float h = H_START;
+    string filename = "resultsB_f.csv";
+
+    ofstream fout;
+    fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
@@ -64,19 +65,19 @@ void SolveB() {
         h = 0.8 * h;
     }
     fout.close();
-    cout << "Pomyslnie zapisano do pliku results2.csv!" << endl;
+    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
     
 
 }
 
-void SolveB_d() {
-    const double X = 0.2;
+void SolveB_d(const double X) {
     double Dh = 0.0;
     double h = H_START;
+    string filename = "resultsB_d.csv";
 
     ofstream fout;
-    fout.open("resultsB_d.csv", ios::trunc);
+    fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
@@ -85,7 +86,7 @@ void SolveB_d() {
         h = 0.8 * h;
     }
     fout.close();
-    cout << "Pomyslnie zapisano do pliku resultsB_d.csv!" << endl;
+    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
     
 }
@@ -111,16 +112,16 @@ int main() {
         switch(menu())
         {
             case '1':
-                SolveA();
+                SolveA_f(X_VALUE);
                 break;
             case '2':
-                SolveA_d();
+                SolveA_d(X_VALUE);
                 break;
             case '3':
-                SolveB();
+                SolveB_f(X_VALUE);
                 break;
             case '4':
-                SolveB_d();
+                SolveB_d(X_VALUE);
                 break;
             case '5':
                 cout <<"Koniec programu!"<<endl;
