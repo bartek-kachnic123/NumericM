@@ -7,7 +7,7 @@ import numpy as np
 def annot_min(x,y,corx,cory, ax=None):
     xmin = x[np.argmin(y)]
     ymin = y.min()
-    text= "h={:.10f}, E(h)={:.12f}".format(xmin, ymin)
+    text= "h={}, E(h)={}".format(xmin, ymin)
     if not ax:
         ax=plt.gca()
     bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
@@ -37,8 +37,8 @@ minD = min(zip(x2, y2), key = lambda t: t[1]) # finding lowest y in pairs (x, y)
 print(minF)
 print(min(y1))
 plt.plot(x1, y1,  label="float")
-annot_min(x1, y1, 1, 0.12)
-annot_min(x2,y2, 0.50, 0.06)
+annot_min(x1, y1, 0.98, 0.3)
+annot_min(x2,y2, 0.50, 0.03)
 check_deritive_error(minF[0], minF[1])
 plt.plot(x2, y2,  label="double")
 plt.title('Dh = (sin(x+h) - sin(x-h)) / 2h')

@@ -2,91 +2,128 @@
 #include <cmath>
 #include <fstream>
 #include <unistd.h>
+#include <limits>
 #define H_START 0.5
 #define H_LIMIT 10e-20
 #define X_VALUE 0.2
 using namespace std;
 
 
-void SolveA_f(const float X) {
-    float Dh = 0.0;
+void SolveA_f(const float x, string filename, const float hIteration=0.875) {
+    float Dh = 0.0, E = 0.0;
     float h = H_START;
-    string filename = "resultsA_f.csv";
+    float lowestE=1.0, optimalH=0.0;
 
     ofstream fout;
     fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
-        Dh = (sin(X+h) - sin(X) ) / h;
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
+        Dh = (sin(x+h) - sin(x) ) / h;
+        E = fabs(Dh - cos(x));
+        fout << h << ";" << E << endl;
+
+        if (lowestE > E ) {
+            lowestE = E;
+            optimalH = h;
+        }
+
+        h = hIteration * h;
     }
     fout.close();
-    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
+    cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
+    cout << "Wyniki pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
 
     
 }
 
-void SolveA_d(const double X) {
-    double Dh = 0.0;
+void SolveA_d(const double x, string filename, const double hIteration=0.875) {
+    double Dh = 0.0, E = 0.0;
     double h = H_START;
-    string filename = "resultsA_d.csv";
+    double lowestE=1.0, optimalH = 0.0; 
 
     ofstream fout;
     fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
-        Dh = (sin(X+h) - sin(X) ) / h;
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
+        Dh = (sin(x+h) - sin(x) ) / h;
+        E = fabs(Dh - cos(x));
+
+        fout << h << ";" << E << endl;
+
+        if (lowestE > E ) {
+            lowestE = E;
+            optimalH = h;
+        }
+
+        h = hIteration * h;
     }
     fout.close();
-    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
+    cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
+
+    cout << "Wyniki pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
 
     
 }
 
-void SolveB_f(const float X) {
-    float Dh = 0.0;
+void SolveB_f(const float x, string filename, const float hIteration=0.875) {
+    float Dh = 0.0, E=0.0;
     float h = H_START;
-    string filename = "resultsB_f.csv";
+    float lowestE=1.0, optimalH=0.0;
+
 
     ofstream fout;
     fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
-        Dh = (sin(X+h) - sin(X-h) ) / (2*h);
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
+        Dh = (sin(x+h) - sin(x-h) ) / (2*h);
+        E = fabs(Dh - cos(x));
+
+        fout << h << ";" << E << endl;
+
+        if (lowestE > E ) {
+            lowestE = E;
+            optimalH = h;
+        }
+        h = hIteration * h;
     }
     fout.close();
+    cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
     cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
     
 
 }
 
-void SolveB_d(const double X) {
-    double Dh = 0.0;
+void SolveB_d(const double x, string filename, const double hIteration = 0.875) {
+    double Dh = 0.0, E = 0.0;
     double h = H_START;
-    string filename = "resultsB_d.csv";
+    double lowestE=1.0, optimalH = 0.0;
+
 
     ofstream fout;
     fout.open(filename, ios::trunc);
     fout << "h" << ";" << "E(h)" << endl;
     while (h > H_LIMIT) 
     {
-        Dh = (sin(X+h) - sin(X-h) ) / (2*h);
-        fout << h << ";" << fabs(Dh - cos(X)) << endl;
-        h = 0.8 * h;
+        Dh = (sin(x+h) - sin(x-h) ) / (2*h);
+        E = fabs(Dh - cos(x));
+
+        fout << h << ";"<< E << endl;
+
+        if (lowestE > E ) {
+            lowestE = E;
+            optimalH = h;
+        }
+        h = hIteration * h;
     }
     fout.close();
-    cout << "Pomyslnie zapisano do pliku " << filename << "!" << endl;
+    cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
+    cout << "Wyniki pomyslnie zapisano do pliku " << filename << "!" << endl;
     sleep(1);
     
 }
@@ -103,25 +140,33 @@ char menu() {
     cout << "Twoj wybor: ";
     char choice;
     cin >> choice;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear buffer
+    
     return choice;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+
+    if (argc != 5)
+    {
+        cerr << "Wrong number of args!" << endl;
+        exit(1);
+    }
     while(1)
     {
         switch(menu())
         {
             case '1':
-                SolveA_f(X_VALUE);
+                SolveA_f(X_VALUE, argv[1]);
                 break;
             case '2':
-                SolveA_d(X_VALUE);
+                SolveA_d(X_VALUE, argv[2]);
                 break;
             case '3':
-                SolveB_f(X_VALUE);
+                SolveB_f(X_VALUE, argv[3]);
                 break;
             case '4':
-                SolveB_d(X_VALUE);
+                SolveB_d(X_VALUE, argv[4]);
                 break;
             case '5':
                 cout <<"Koniec programu!"<<endl;
