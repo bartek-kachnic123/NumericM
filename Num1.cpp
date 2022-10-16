@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void SolveA_f(const float x, string filename, const float hIteration=0.875) {
+void SolveA_f(const float x, string filename, const float hIteration=0.80) {
     float Dh = 0.0, E = 0.0;
     float h = H_START;
     float lowestE=1.0, optimalH=0.0;
@@ -29,6 +29,7 @@ void SolveA_f(const float x, string filename, const float hIteration=0.875) {
         }
 
         h = hIteration * h;
+        
     }
     fout.close();
     cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
@@ -38,7 +39,7 @@ void SolveA_f(const float x, string filename, const float hIteration=0.875) {
     
 }
 
-void SolveA_d(const double x, string filename, const double hIteration=0.875) {
+void SolveA_d(const double x, string filename, const double hIteration=0.80) {
     double Dh = 0.0, E = 0.0;
     double h = H_START;
     double lowestE=1.0, optimalH = 0.0; 
@@ -60,6 +61,7 @@ void SolveA_d(const double x, string filename, const double hIteration=0.875) {
 
         h = hIteration * h;
     }
+   
     fout.close();
     cout << "Najmniejszy blad wynosi E(h) = " << lowestE << " dla h = " << optimalH << "!" << endl;
 
@@ -69,7 +71,7 @@ void SolveA_d(const double x, string filename, const double hIteration=0.875) {
     
 }
 
-void SolveB_f(const float x, string filename, const float hIteration=0.875) {
+void SolveB_f(const float x, string filename, const float hIteration=0.8) {
     float Dh = 0.0, E=0.0;
     float h = H_START;
     float lowestE=1.0, optimalH=0.0;
@@ -99,7 +101,7 @@ void SolveB_f(const float x, string filename, const float hIteration=0.875) {
 
 }
 
-void SolveB_d(const double x, string filename, const double hIteration = 0.875) {
+void SolveB_d(const double x, string filename, const double hIteration = 0.80) {
     double Dh = 0.0, E = 0.0;
     double h = H_START;
     double lowestE=1.0, optimalH = 0.0;
