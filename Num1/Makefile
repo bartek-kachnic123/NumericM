@@ -33,7 +33,7 @@ LD = $(CO)
 $(EXEC1): $(OBJS1)
 	$(LD) -o $@ $(CFLAGS)  $^
 
-.PHONY: run1
+.PHONY: run
 # Uruchomienie programu
 run1: $(EXEC1)
 	./$(EXEC1) $(FILE1) $(FILE2) $(FILE3) $(FILE4)
@@ -43,7 +43,7 @@ run1: $(EXEC1)
 ###############################################################################
 .PHONY: clean tar
 clean:                                                     
-	rm -f *.o  *~ *.a *.so *exe *.x core core* a.out;
+	rm -f *.o  *~ *.a *.so *exe *.x core core* *.out;
 # Archiwizacja i kompresja
 tar: clean
 	(cd ../; tar -cvzf $(DIR).tar.gz  $(DIR) )

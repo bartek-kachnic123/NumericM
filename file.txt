@@ -1,3 +1,0 @@
-1. pozmieniac nazwy plikow i funkcji // zrobione
-2. zrobic makefile
-3.przygotowac pdf
