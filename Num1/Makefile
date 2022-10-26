@@ -35,7 +35,7 @@ $(EXEC1): $(OBJS1)
 
 .PHONY: run
 # Uruchomienie programu
-run1: $(EXEC1)
+run: $(EXEC1)
 	./$(EXEC1) $(FILE1) $(FILE2) $(FILE3) $(FILE4)
 
 ###############################################################################
