@@ -51,9 +51,6 @@ def main():
     print("||y2-y'2|| = ", norm_2)
 
 
-    print(np.linalg.norm(A_1) * np.linalg.norm(np.linalg.inv(A_1)))
-    print(np.linalg.norm(A_2) * np.linalg.norm(np.linalg.inv(A_2)))
-
   
 
 
