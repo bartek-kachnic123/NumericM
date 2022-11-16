@@ -52,7 +52,7 @@ def main():
         N = 100
     else: N = int(sys.argv[1]) 
 
-    x = np.arange(1, 101)  # 1 to 100
+    x = np.arange(1, N+1)  # 1 to 100
 
     A = makeArrayA(N)
     A = LU_method(A, N)
