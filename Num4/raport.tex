@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgf}
+\begin{document}
+
+\section{Wprowadzenie}
+
+\paragraph{}
+
+Nasza macierz A będzie składać się z liczb 10 na diagonali, 8 na pierwszej pozycji 
+nad diagonalą oraz pozostałych elementów równych 1.  Aby efektywnie obliczyć rozwiązania 
+Ay = b, dla wybranego wektora \begin{equation*}
+ b = (5,...,5)^T
+\end{equation*} zastosujemy algorytm Shermana-Morisssona.\\
+
+
+\paragraph{}
+Podzielmy naszą macierz A na: \\
+\begin{equation*}
+ \medskip
+B = \begin{pmatrix}
+    9 & 7 & 0 \\
+    0 & 9 & 7 \\
+    0 & 0 & 9 \\
+    \end{pmatrix}
++
+uv^T = \begin{pmatrix}
+    1 & 1 & 1 \\
+    1 & 1 & 1 \\
+    1 & 1 & 1 \\
+    \end{pmatrix}
+\end{equation*}
+
+\smallskip
+\paragraph{}
+Za pomocą wzoru Shermana-Morissona
+ \begin{equation*}
+ (B+uv^T)^{-1} = B^{-1} - \frac{B^{-1}uv^{T}B^-1}{1+v^{T}B^{-1} u}
+\end{equation*}
+\paragraph{}
+Jesteśmy w stanie obliczyć
+ \begin{equation*}
+ y = (A^{-1})b =  (B^{-1} - \frac{B^{-1}uv^{T}B^-1}{1+v^{T}B^{-1} u})b
+\end{equation*}
+\paragraph{}
+Obliczając najpierw
+ \begin{equation*}
+Bz = b 
+\end{equation*}
+\begin{equation*}
+Bq = u
+\end{equation*}
+\paragraph{}
+Teraz możemy obliczyć rozwiązanie:
+ \begin{equation*}
+ y =    z - \frac{v^{T}zq}{1+v^{T}q}
+\end{equation*}
+
+
+\pagebreak
+\section{Wyniki}
+
+
+
+Dla N = 50 
+\paragraph{}
+Rozwiązania y = 
+
+[0.07525844 0.07525904 0.07525827 0.07525926 0.07525799 0.07525963 \\
+ 0.07525752 0.07526023 0.07525674 0.07526122 0.07525546 0.07526287 \\
+ 0.07525334 0.07526559 0.07524985 0.07527009 0.07524406 0.07527753 \\
+ 0.0752345  0.07528983 0.07521869 0.07531015 0.07519256 0.07534375 \\
+ 0.07514936 0.07539929 0.07507795 0.0754911  0.07495991 0.07564287 \\
+ 0.07476477 0.07589376 0.0744422  0.07630849 0.07390898 0.07699406 \\
+ 0.07302753 0.07812736 0.07157043 0.08000077 0.06916176 0.08309763 \\
+ 0.06518009 0.08821693 0.05859813 0.09667944 0.04771776 0.11066849 \\
+ 0.02973183 0.13379325] 
+
+\begin{center}
+\input{graph.pgf}
+\end{center}
+
+\pagebreak
+
+\section{Analiza wyników}
+\paragraph{}
+Za pomocą specjalnych sposobów jesteśmy w stanie znaleźć rozwiązanie w czasie O(n).
+Wydawać by się mogło, że wraz ze zwiększaniem się macierzy potrzebny czas będzie  rosnąć liniowo.
+Jednak jak możemy zauważyć na wykresie tak nie jest. Występują miejsca, gdzie mimo mniejszej macierzy 
+czas jest większy. Dzieje się tak z powodu bardziej wymagających operacji artmetycznych.
+
+
+
+\end{document}
