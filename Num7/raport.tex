@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgf}
+\begin{document}
+\author{Bartłomiej Kachnic}
+\section{Wprowadzenie}
+
+\paragraph{}
+\begin{equation}
+Naszym celem będzie wyznaczenie wielomianów interpolacyjnych stopnia n, Wn(x) dla przedziału <-1, 1>.
+dla funkcji  y(x) = \frac{1}{1 + 25x^2} \end{equation}
+
+\paragraph{}
+Dla: \\
+\begin{equation*}
+jednorodnych węzłów interpolacji x_i = -1 + 2\frac{i}{n+1} dla (i=0, ... , n)
+\end{equation*}
+oraz
+\begin{equation*}
+x_i = cos(\frac{2i+1}{2(n+1)}pi)$$
+
+\end{equation*}
+\paragraph{}
+$a)$ Algorytm QR polega na iteracji: \\
+\begin{equation*}
+    QR = A 
+\end{equation*}
+\begin{equation*}
+    A = RQ
+\end{equation*}
+\paragraph{}
+$b)$ Metoda potęgowa polega na iteracji: \\
+\begin{equation*}
+    By_{k} = z_{k}
+\end{equation*}
+\begin{equation*}
+    By_{k+1} = \frac{z_{k}}{||z_{k}||}
+\end{equation*}
+\medskip
+\section{Wyniki}
+
+Zostosowano maksymalną ilośc iteracji N = 100 i błędu przybliżenia 10e-8.
+\paragraph{}
+Wartości własne macierzy A przy pomocy algorytmu QR:\\
+\begin{equation*}
+[7.23099229  \ 5.90015728 \ 4.81580659 \  1.05304383]
+\end{equation*}
+
+\paragraph{}
+Maksymalna wartość własna (co do modułu) macierzy B przy pomocy metody potęgowej\\
+\begin{equation*}
+10.015982848255206\\
+\end{equation*}
+\paragraph{}
+Odpowiadający jej wektor własny:\\
+\begin{equation*}
+[0.55829692 \ 0.77620834 \  0.28678783  \ 0.05964813]
+\end{equation*}
+
+
+
+\section{Analiza wyników}
+\paragraph{}
+Przy pomocy algorytmu QR jesteśmy w stanie znaleźć wartości własne, jednak koszt wszystkich operacji jest duży ze względu na samą złożonośc faktoryzacji QR , która wynosi $O(n^3)$
+Natomiast dzięki metodzie potęgowej znajdujemy maksymalną wartość własną i jej wektor własny. Jest to możliwe tylko wtedy gdy wartości własne przybierają różne wartości modułu.
+
+
+
+\end{document}
