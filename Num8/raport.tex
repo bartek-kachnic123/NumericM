@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{eso-pic}
+\begin{document}
+
+\section{Wprowadzenie}
+
+\paragraph{}
+
+Naszym celem będzie znalezenie odpowiednich współczynników a,b,c,d \
+funkcji  \begin{equation} F(x) = asin(2x) + bsin(3x) + ccos(5x) + dexp(-x) \end{equation} 
+najlepiej opisujących gotowe  dane zawarte w pliku tekstowym. A także za pomocą innej funkcji 
+\begin{equation} G(x) =  a - bx + cx^2 + sin(x^3) \end{equation} i wybranymi współczynnikami generujemy dane z losowym zaburzeniem.
+Aby obliczyć współczynniki zastosujemy metodę najmniejszych kwadratów.
+
+\paragraph{}
+Dla: 
+
+\paragraph{}
+a)\ F(x)
+\begin{equation*}
+    A =  \begin{pmatrix}
+        sin(2x_0) &sin(3x_0)& cos(5x_0) & exp(-x_0)\\
+        sin(2x_1)& sin(3x_1)& cos(5x_1) &exp(-x_1)\\
+        ...& ...& ... &...\\
+        sin(2x_n)& sin(3x_n)& cos(5x_n)& exp(-x_n)\\
+        \end{pmatrix}
+	\;  A^{T}A *  (a,b,c,d)^T = A^{T}y
+\end{equation*}
+
+\paragraph{}
+b)\ G(x)
+\begin{equation*}
+   A =  \begin{pmatrix}
+        1 &-x_0& x_0^2 & sin(x_0^3)\\
+        1& -x_1& x_1^2 &sin(x_1^3)\\
+        ...& ...& ... &...\\
+        1& -x_n& x_n^2& sin(x_n^3)\\
+        \end{pmatrix}
+	\;  A^{T}A *  (a,b,c,d)^T = A^{T}y
+\end{equation*}
+
+
+
+\newpage
+\section{Wyniki}
+
+
+\paragraph{}
+
+\begingroup\centering
+\paragraph{}
+Współczynniki a-d dla F(x): [0.66767124 1.07293276 1.69693956 3.40636597]
+\input{graph.pgf}
+\newpage
+Wybrane współczynniki a-d dla G(x): [0.125, 10, 0.875, 2.125] \\
+Otrzymane współczynniki a-d dla G(x): [0.57747306 9.9819765  0.87301414 2.15589907]
+\input{graph2.pgf}
+
+\endgroup
+
+
+
+
+\section{Analiza wyników}
+\paragraph{}
+Dzięki metodzie najmniejszych kwadratów jesteśmy w stanie dopasować współczynniki, aby nasza funkcja F(x) jak najlepiej
+pokryła podane dane. Wartości współczynników dla funkcji G(x) mimo zaburzenia różnią się minimalnie. Najbardziej pierwsza wartość, której część wartości funkcji nie jest zależna od x.
+
+
+
+\vfill \rightline{Bartłomiej Kachnic}
+\end{document}
