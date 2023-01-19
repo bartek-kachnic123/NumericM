@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage{eso-pic}
+\begin{document}
+
+\section{Wprowadzenie}
+
+\paragraph{}
+
+Dla wybranej przez nas funkcji F spróbujemy znaleźć pierwiastek x* równania F(x) = 0 z dokładnością
+\(10^{-10}\).
+
+\begin{equation} F(x) = (expx - 2)^n \ dla\ n=1,2,3 \end{equation} Stosując 4 wybrane metody:\\
+a) bisekcja\\
+b) falsi\\
+c) siecznych\\
+d) Newtona\\
+
+\section{Wyniki}
+
+
+\paragraph{}
+
+\begingroup\centering
+Ilość kroków bisection n=1: 29 \  x* = 0.6931471806019545\\
+Ilość kroków bisection n=3: 9 \   x* = 0.693359375\\
+Ilość kroków falsi n=1: 11  \     x* = 0.6931471818412706\\
+Ilość kroków falsi n=3: 9      \  x* = 0.6937114591149169\\
+Ilość kroków secant n=1: 6   \    x* = 0.6931471805599592\\
+Ilość kroków secant n=3: 18 \     x* = 0.693525083121147\\
+Ilość kroków newton n=1: 4  \     x* = 0.6931471805600254\\
+Ilość kroków newton n=2: 15   \   x* = 0.6931598645603575\\
+Ilość kroków newton n=3: 17   \   x* = 0.6935399217372314\\
+\input{graph_n1.pgf}
+\newpage
+\input{graph_n3.pgf}
+\input{graph_n2.pgf}
+
+\endgroup
+
+
+
+
+\section{Analiza wyników}
+\paragraph{}
+Analizując wykres 1, najszybciej zadawalający efekt daje metoda Newtona, później siecznych i falsi. Najgorzej spisuje się bisekcja.
+Natomiast już dla podniesionej funkcji do potęgi n=3, najszybciej zadawalający wynik daje nam bisekcja, później Newton i siecznych.
+Wyjątkiem jest metoda falsi, która nie radzi sobie z funkcją podniesioną do potęgi n=3, ponieważ wynik otrzymujemy dopiero po ponad 300 000 iteracjach. Aby temu zaradźić, dzielimy ową funkcję przez jej pochodną. W ten sposób zmniejszamy przedział i wielokrotność pierwiastka zachowując ten sam pierwiastek. Metoda falsi w tym przypadku po modyfikacji dorównuje metodzie bisekcji. Na ostatnim wykresie widnieje tylko metoda Newtona, ponieważ to jedyna metoda, która nie wymaga przedziału <a,b>, dla którego F(a)  *  F(b) < 0. Dla innych metod wybranie tego przedziału dla potęgi n=2 jest niemożliwe, ponieważ \(F(x)^2\) >= 0.
+
+
+
+\vfill \rightline{Bartłomiej Kachnic}
+\end{document}
